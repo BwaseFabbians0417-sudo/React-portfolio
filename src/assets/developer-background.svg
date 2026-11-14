@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" fill="none">
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="matrix(0 410 -510 0 1184 492)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#61DEEF" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#102235" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="editor" x1="800" x2="1440" y1="210" y2="740" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14283A"/>
+      <stop offset="1" stop-color="#091725"/>
+    </linearGradient>
+    <linearGradient id="editor-line" x1="0" x2="1">
+      <stop stop-color="#61DEEF"/>
+      <stop offset="1" stop-color="#91EFF7"/>
+    </linearGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#5CBBD0" fill-opacity=".3"/>
+    </pattern>
+    <filter id="shadow" x="740" y="130" width="770" height="690" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="24"/>
+      <feGaussianBlur stdDeviation="25"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix values="0 0 0 0 0.12 0 0 0 0 0.17 0 0 0 0 0.13 0 0 0 0.19 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+    </filter>
+  </defs>
+  <circle cx="1184" cy="492" r="510" fill="url(#glow)"/>
+  <circle cx="1184" cy="492" r="388" stroke="#5CBBD0" stroke-opacity=".2"/>
+  <circle cx="1184" cy="492" r="330" stroke="#5CBBD0" stroke-opacity=".15" stroke-dasharray="3 12"/>
+  <path d="M673 778 1515 170M706 850l851-622" stroke="#40758A" stroke-opacity=".16"/>
+  <circle cx="714" cy="779" r="4" fill="#61DEEF"/>
+  <circle cx="1509" cy="174" r="4" fill="#61DEEF"/>
+  <rect x="726" y="133" width="776" height="690" fill="url(#dots)" opacity=".55"/>
+  <g filter="url(#shadow)" transform="rotate(-3 1110 464)">
+    <rect x="792" y="192" width="640" height="532" rx="22" fill="url(#editor)"/>
+    <rect x="792.5" y="192.5" width="639" height="531" rx="21.5" stroke="#336276" stroke-opacity=".62"/>
+    <path d="M793 254h638" stroke="#A6D8E6" stroke-opacity=".16"/>
+    <circle cx="824" cy="224" r="5" fill="#F28C79"/>
+    <circle cx="844" cy="224" r="5" fill="#E5C47F"/>
+    <circle cx="864" cy="224" r="5" fill="#61DEEF"/>
+    <rect x="881" y="214" width="134" height="21" rx="5" fill="#BBDCE6" fill-opacity=".08"/>
+    <text x="898" y="228" fill="#D5E9F0" font-family="monospace" font-size="10">portfolio.jsx</text>
+    <text x="819" y="293" fill="#76A6B8" font-family="monospace" font-size="12">01</text>
+    <text x="857" y="293" fill="#61DEEF" font-family="monospace" font-size="13">const</text>
+    <text x="899" y="293" fill="#E3F0F5" font-family="monospace" font-size="13">developer</text>
+    <text x="988" y="293" fill="#A6C9D8" font-family="monospace" font-size="13">=</text>
+    <text x="1008" y="293" fill="#80C4F1" font-family="monospace" font-size="13">{'{'}curious: true{'}'}</text>
+    <text x="819" y="330" fill="#76A6B8" font-family="monospace" font-size="12">02</text>
+    <text x="857" y="330" fill="#61DEEF" font-family="monospace" font-size="13">function</text>
+    <text x="928" y="330" fill="#91EFF7" font-family="monospace" font-size="13">build</text>
+    <text x="970" y="330" fill="#E3F0F5" font-family="monospace" font-size="13">(ideas)</text>
+    <text x="819" y="367" fill="#76A6B8" font-family="monospace" font-size="12">03</text>
+    <text x="881" y="367" fill="#A6C9D8" font-family="monospace" font-size="13">return</text>
+    <text x="934" y="367" fill="#80C4F1" font-family="monospace" font-size="13">'something useful'</text>
+    <text x="819" y="404" fill="#76A6B8" font-family="monospace" font-size="12">04</text>
+    <text x="857" y="404" fill="#768778" font-family="monospace" font-size="13">// make it feel human</text>
+    <rect x="819" y="444" width="544" height="1" fill="#D3E0CB" fill-opacity=".12"/>
+    <text x="819" y="485" fill="#A6C9D8" font-family="monospace" font-size="12">01</text>
+    <rect x="857" y="474" width="154" height="10" rx="5" fill="url(#editor-line)" opacity=".82"/>
+    <rect x="1021" y="474" width="98" height="10" rx="5" fill="#DDE7D5" fill-opacity=".62"/>
+    <rect x="1130" y="474" width="133" height="10" rx="5" fill="#80C4F1" fill-opacity=".72"/>
+    <text x="819" y="526" fill="#A6C9D8" font-family="monospace" font-size="12">02</text>
+    <rect x="857" y="515" width="92" height="10" rx="5" fill="#80C4F1" fill-opacity=".78"/>
+    <rect x="959" y="515" width="202" height="10" rx="5" fill="#DDE7D5" fill-opacity=".55"/>
+    <rect x="1171" y="515" width="111" height="10" rx="5" fill="#61DEEF" fill-opacity=".82"/>
+    <text x="819" y="567" fill="#A6C9D8" font-family="monospace" font-size="12">03</text>
+    <rect x="857" y="556" width="216" height="10" rx="5" fill="#DDE7D5" fill-opacity=".62"/>
+    <rect x="1083" y="556" width="122" height="10" rx="5" fill="#80C4F1" fill-opacity=".72"/>
+    <rect x="1215" y="556" width="89" height="10" rx="5" fill="#DDE7D5" fill-opacity=".42"/>
+    <text x="819" y="608" fill="#A6C9D8" font-family="monospace" font-size="12">04</text>
+    <rect x="857" y="597" width="121" height="10" rx="5" fill="#61DEEF" fill-opacity=".8"/>
+    <rect x="988" y="597" width="187" height="10" rx="5" fill="#DDE7D5" fill-opacity=".48"/>
+    <rect x="1187" y="597" width="117" height="10" rx="5" fill="#80C4F1" fill-opacity=".67"/>
+    <rect x="819" y="652" width="544" height="1" fill="#D3E0CB" fill-opacity=".12"/>
+    <circle cx="833" cy="684" r="4" fill="#61DEEF"/>
+    <text x="847" y="688" fill="#B8D0DB" font-family="monospace" font-size="10">READY TO SHIP</text>
+    <text x="1283" y="688" fill="#61DEEF" font-family="monospace" font-size="10">100%</text>
+  </g>
+  <g transform="rotate(4 1264 143)">
+    <rect x="1208" y="99" width="209" height="54" rx="27" fill="#102235" fill-opacity=".96"/>
+    <rect x="1208.5" y="99.5" width="208" height="53" rx="26.5" stroke="#33566C"/>
+    <circle cx="1234" cy="126" r="5" fill="#61DEEF"/>
+    <text x="1250" y="130" fill="#B8D0DB" font-family="monospace" font-size="10" letter-spacing="1.3">DEVELOPER MODE</text>
+  </g>
+  <g transform="rotate(-7 752 569)">
+    <rect x="667" y="533" width="170" height="74" rx="16" fill="#102235" fill-opacity=".97"/>
+    <rect x="667.5" y="533.5" width="169" height="73" rx="15.5" stroke="#33566C"/>
+    <text x="691" y="578" fill="#61DEEF" font-family="monospace" font-size="28">&lt;/&gt;</text>
+    <text x="745" y="574" fill="#B8D0DB" font-family="monospace" font-size="9">GOOD IDEAS</text>
+    <text x="745" y="588" fill="#B8D0DB" font-family="monospace" font-size="9">LIVE HERE</text>
+  </g>
+</svg>
