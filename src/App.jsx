@@ -48,6 +48,7 @@ const featuredProjects = [
     url: '#contact-list',
     technology: 'REACT · JAVASCRIPT',
     demo: true,
+    showcaseId: 'contact-list',
   },
   {
     name: 'Calculator',
@@ -55,6 +56,7 @@ const featuredProjects = [
     description: 'A clean, responsive calculator for everyday arithmetic.',
     url: 'https://calculator-rosy-six-11.vercel.app',
     technology: 'REACT · JAVASCRIPT',
+    showcaseId: 'calculator',
   },
   {
     name: 'Profile Card',
@@ -62,6 +64,7 @@ const featuredProjects = [
     description: 'A polished personal profile card with clear contact links.',
     url: 'https://profile-card-mauve-iota.vercel.app',
     technology: 'HTML · CSS',
+    showcaseId: 'profile-card',
   },
   {
     name: 'Facebook Login Clone',
@@ -70,6 +73,7 @@ const featuredProjects = [
     url: '#facebook-clone',
     technology: 'HTML · CSS',
     demo: true,
+    showcaseId: 'facebook-clone',
   },
   {
     name: 'Price Tag',
@@ -77,6 +81,7 @@ const featuredProjects = [
     description: 'A tiered pricing layout for an automotive service concept.',
     url: 'https://facebook-login-clone-gotd.vercel.app',
     technology: 'HTML · CSS',
+    showcaseId: 'price-tag',
   },
   {
     name: 'Product Designs',
@@ -84,6 +89,7 @@ const featuredProjects = [
     description: 'A small set of product cards exploring color, layout, and hierarchy.',
     url: 'https://price-tag-flax.vercel.app',
     technology: 'HTML · CSS',
+    showcaseId: 'product-designs',
   },
   {
     name: 'Note Pad',
@@ -93,6 +99,13 @@ const featuredProjects = [
     technology: 'REACT · JAVASCRIPT',
   },
 ]
+const liveProjectCount = featuredProjects.filter((project) => !project.demo).length
+const showcaseProjectCount = featuredProjects.filter((project) => project.showcaseId).length
+
+function projectNumber(name) {
+  const index = featuredProjects.findIndex((project) => project.name === name)
+  return String(index + 1).padStart(2, '0')
+}
 
 function ArrowIcon({ diagonal = false }) {
   return diagonal ? (
@@ -174,7 +187,7 @@ function Hero() {
           <div className="profile-handle">@{githubUsername}</div>
           <div className="profile-divider" />
           <div className="profile-stats">
-            <div><strong>12</strong><span>FEATURED BUILDS</span></div>
+            <div><strong>{String(featuredProjects.length).padStart(2, '0')}</strong><span>FEATURED BUILDS</span></div>
             <div><strong>∞</strong><span>IDEAS TO BUILD</span></div>
           </div>
           <a className="profile-link" href={`https://github.com/${githubUsername}`} target="_blank" rel="noreferrer">
@@ -183,7 +196,7 @@ function Hero() {
         </div>
         <div className="art-note"><span>✦</span> made with curiosity</div>
       </div>
-      <div className="hero-index"><span>01</span> — 12</div>
+      <div className="hero-index"><span>01</span> — {String(featuredProjects.length).padStart(2, '0')}</div>
     </section>
   )
 }
@@ -372,7 +385,7 @@ function ContactListDemo() {
     <article className="demo-card contact-demo" id="contact-list">
       <div className="demo-heading">
         <div>
-          <p className="demo-eyebrow">PROJECT 06 · PERSONAL DIRECTORY</p>
+          <p className="demo-eyebrow">PROJECT {projectNumber('Contact List')} · PERSONAL DIRECTORY</p>
           <h3>Keep your people close.</h3>
           <p>Add a contact, then search your list by name or number.</p>
         </div>
@@ -476,7 +489,7 @@ function CalculatorDemo() {
     <article className="demo-card calculator-demo" id="calculator">
       <div className="demo-heading">
         <div>
-          <p className="demo-eyebrow">PROJECT 07 · EVERYDAY TOOL</p>
+          <p className="demo-eyebrow">PROJECT {projectNumber('Calculator')} · EVERYDAY TOOL</p>
           <h3>Just the right numbers.</h3>
           <p>Quick, clear arithmetic with the essentials.</p>
         </div>
@@ -501,7 +514,7 @@ function ProfileCardDemo() {
     <article className="demo-card design-demo" id="profile-card">
       <div className="demo-heading">
         <div>
-          <p className="demo-eyebrow">PROJECT 08 · PROFILE DESIGN</p>
+          <p className="demo-eyebrow">PROJECT {projectNumber('Profile Card')} · PROFILE DESIGN</p>
           <h3>A card that says hello.</h3>
           <p>A compact identity card with direct ways to connect.</p>
         </div>
@@ -523,7 +536,7 @@ function FacebookCloneDemo() {
     <article className="demo-card design-demo" id="facebook-clone">
       <div className="demo-heading">
         <div>
-          <p className="demo-eyebrow">PROJECT 09 · SOCIAL UI STUDY</p>
+          <p className="demo-eyebrow">PROJECT {projectNumber('Facebook Login Clone')} · SOCIAL UI STUDY</p>
           <h3>Familiar, reimagined.</h3>
           <p>A responsive login-page layout recreated as a visual exercise.</p>
         </div>
@@ -556,7 +569,7 @@ function PriceTagDemo() {
     <article className="demo-card design-demo" id="price-tag">
       <div className="demo-heading">
         <div>
-          <p className="demo-eyebrow">PROJECT 10 · PRICING DESIGN</p>
+          <p className="demo-eyebrow">PROJECT {projectNumber('Price Tag')} · PRICING DESIGN</p>
           <h3>Find your level.</h3>
           <p>A responsive set of plans for an automotive service concept.</p>
         </div>
@@ -587,7 +600,7 @@ function ProductDesignDemo() {
     <article className="demo-card design-demo" id="product-designs">
       <div className="demo-heading">
         <div>
-          <p className="demo-eyebrow">PROJECT 11 · PRODUCT UI</p>
+          <p className="demo-eyebrow">PROJECT {projectNumber('Product Designs')} · PRODUCT UI</p>
           <h3>Little things, well considered.</h3>
           <p>A product-card study focused on imagery, detail, and price.</p>
         </div>
@@ -742,7 +755,7 @@ function Work() {
       <div className="section-label"><span>03</span> SELECTED WORK</div>
       <div className="work-heading">
         <div>
-          <p className="work-overline">TWELVE PROJECTS · TEN LIVE LINKS · SIX ON-PAGE SHOWCASES</p>
+          <p className="work-overline">{featuredProjects.length} PROJECTS · {liveProjectCount} LIVE LINKS · {showcaseProjectCount} ON-PAGE SHOWCASES</p>
           <h2>A few things I&apos;ve <span>made.</span></h2>
         </div>
         <a className="all-work-link" href={`https://github.com/${githubUsername}?tab=repositories`} target="_blank" rel="noreferrer">
@@ -762,7 +775,7 @@ function Work() {
       </div>
       <GitHubRepositories />
       <div className="work-foot">
-        <span>TEN LIVE PROJECT LINKS · SIX ON-PAGE SHOWCASES <i>✳</i> MORE ON GITHUB</span>
+        <span>{liveProjectCount} LIVE PROJECT LINKS · {showcaseProjectCount} ON-PAGE SHOWCASES <i>✳</i> MORE ON GITHUB</span>
         <a href={`https://github.com/${githubUsername}?tab=repositories`} target="_blank" rel="noreferrer">VIEW ALL REPOSITORIES ↗</a>
       </div>
     </section>
