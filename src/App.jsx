@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import certificateImage from './assets/responsiveness-certificate-cropped.jpg'
 import './App.css'
 
@@ -39,6 +40,54 @@ const featuredProjects = [
     description: 'A modern web project, deployed and ready to explore.',
     url: 'https://vite-project-fengs.vercel.app',
     technology: 'REACT · VITE',
+  },
+  {
+    name: 'Contact List',
+    category: 'REACT APPLICATION',
+    description: 'Add, search, and organize people in a simple personal directory.',
+    url: '#contact-list',
+    technology: 'REACT · JAVASCRIPT',
+    demo: true,
+  },
+  {
+    name: 'Calculator',
+    category: 'INTERACTIVE TOOL',
+    description: 'A clean, responsive calculator for everyday arithmetic.',
+    url: '#calculator',
+    technology: 'REACT · JAVASCRIPT',
+    demo: true,
+  },
+  {
+    name: 'Profile Card',
+    category: 'PROFILE DESIGN',
+    description: 'A polished personal profile card with clear contact links.',
+    url: '#profile-card',
+    technology: 'HTML · CSS',
+    demo: true,
+  },
+  {
+    name: 'Facebook Login Clone',
+    category: 'UI STUDY',
+    description: 'A responsive social sign-in layout, presented as a static visual study.',
+    url: '#facebook-clone',
+    technology: 'HTML · CSS',
+    demo: true,
+  },
+  {
+    name: 'Price Tag',
+    category: 'PRICING DESIGN',
+    description: 'A tiered pricing layout for an automotive service concept.',
+    url: '#price-tag',
+    technology: 'HTML · CSS',
+    demo: true,
+  },
+  {
+    name: 'Product Designs',
+    category: 'PRODUCT UI',
+    description: 'A small set of product cards exploring color, layout, and hierarchy.',
+    url: '#product-designs',
+    technology: 'HTML · CSS',
+    demo: true,
   },
 ]
 
@@ -122,7 +171,7 @@ function Hero() {
           <div className="profile-handle">@{githubUsername}</div>
           <div className="profile-divider" />
           <div className="profile-stats">
-            <div><strong>05</strong><span>FEATURED BUILDS</span></div>
+            <div><strong>11</strong><span>FEATURED BUILDS</span></div>
             <div><strong>∞</strong><span>IDEAS TO BUILD</span></div>
           </div>
           <a className="profile-link" href={`https://github.com/${githubUsername}`} target="_blank" rel="noreferrer">
@@ -131,7 +180,7 @@ function Hero() {
         </div>
         <div className="art-note"><span>✦</span> made with curiosity</div>
       </div>
-      <div className="hero-index"><span>01</span> — 05</div>
+      <div className="hero-index"><span>01</span> — 11</div>
     </section>
   )
 }
@@ -208,11 +257,11 @@ function Resume() {
             </div>
           </section>
           <section className="resume-block">
-            <h3>SELECTED DEPLOYMENTS</h3>
+            <h3>SELECTED PROJECTS</h3>
             <ul className="resume-projects">
               {featuredProjects.map((project) => (
                 <li key={project.name}>
-                  <a href={project.url} target="_blank" rel="noreferrer">
+                  <a href={project.url} target={project.demo ? undefined : '_blank'} rel={project.demo ? undefined : 'noreferrer'}>
                     {project.name}<ArrowIcon diagonal />
                   </a>
                 </li>
@@ -269,9 +318,9 @@ function ProjectCard({ project, index }) {
     <a
       className="repo-card"
       href={project.url}
-      target="_blank"
-      rel="noreferrer"
-      aria-label={`Open ${project.name} live deployment`}
+      target={project.demo ? undefined : '_blank'}
+      rel={project.demo ? undefined : 'noreferrer'}
+      aria-label={project.demo ? `Try the ${project.name} demo` : `Open ${project.name} live deployment`}
     >
       <div className="repo-card-top">
         <span className="repo-number">{number} / {project.category}</span>
@@ -281,9 +330,406 @@ function ProjectCard({ project, index }) {
       <p className="repo-description">{project.description}</p>
       <div className="repo-card-bottom">
         <span className="repo-language"><i /> {project.technology}</span>
-        <span className="project-cta">OPEN LIVE SITE ↗</span>
+        <span className="project-cta">{project.demo ? 'TRY THE DEMO ↗' : 'OPEN LIVE SITE ↗'}</span>
       </div>
     </a>
+  )
+}
+
+function ContactListDemo() {
+  const nextContactId = useRef(0)
+  const [contacts, setContacts] = useState([])
+  const [search, setSearch] = useState('')
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [error, setError] = useState('')
+  const visibleContacts = contacts.filter((contact) =>
+    `${contact.name} ${contact.phone}`.toLowerCase().includes(search.trim().toLowerCase()),
+  )
+
+  function addContact(event) {
+    event.preventDefault()
+    const cleanName = name.trim()
+    const cleanPhone = phone.trim()
+    if (!cleanName || !cleanPhone) {
+      setError('Enter both a name and a phone number.')
+      return
+    }
+
+    setContacts((currentContacts) => [
+      ...currentContacts,
+      { id: nextContactId.current += 1, name: cleanName, phone: cleanPhone },
+    ])
+    setName('')
+    setPhone('')
+    setError('')
+  }
+
+  return (
+    <article className="demo-card contact-demo" id="contact-list">
+      <div className="demo-heading">
+        <div>
+          <p className="demo-eyebrow">PROJECT 06 · PERSONAL DIRECTORY</p>
+          <h3>Keep your people close.</h3>
+          <p>Add a contact, then search your list by name or number.</p>
+        </div>
+        <span className="demo-count">{contacts.length}<small>{contacts.length === 1 ? 'CONTACT' : 'CONTACTS'}</small></span>
+      </div>
+      <div className="contact-demo-layout">
+        <form className="demo-form" onSubmit={addContact}>
+          <label htmlFor="demo-contact-name">Name</label>
+          <input id="demo-contact-name" autoComplete="name" placeholder="e.g. Alex Morgan" value={name} onChange={(event) => { setName(event.target.value); setError('') }} required />
+          <label htmlFor="demo-contact-phone">Phone number</label>
+          <input id="demo-contact-phone" type="tel" autoComplete="tel" placeholder="e.g. +1 555 010 2030" value={phone} onChange={(event) => { setPhone(event.target.value); setError('') }} required />
+          {error && <p className="demo-form-error" role="alert">{error}</p>}
+          <button className="demo-submit" type="submit">Add contact <span aria-hidden="true">＋</span></button>
+        </form>
+        <div className="demo-contact-list">
+          <label className="visually-hidden" htmlFor="demo-contact-search">Search contacts</label>
+          <input id="demo-contact-search" className="demo-search" type="search" placeholder="Search contacts..." value={search} onChange={(event) => setSearch(event.target.value)} />
+          {visibleContacts.length ? (
+            <ul>
+              {visibleContacts.map((contact) => (
+                <li key={contact.id}>
+                  <span className="demo-avatar" aria-hidden="true">{contact.name.charAt(0).toUpperCase()}</span>
+                  <span className="demo-contact-details"><strong>{contact.name}</strong><a href={`tel:${contact.phone.replace(/[^\d+]/g, '')}`}>{contact.phone}</a></span>
+                  <button className="demo-remove" type="button" aria-label={`Remove ${contact.name}`} onClick={() => setContacts((currentContacts) => currentContacts.filter((item) => item.id !== contact.id))}>×</button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="demo-empty">{contacts.length ? 'No matching contacts. Try another search.' : 'Your list is ready for its first hello.'}</p>
+          )}
+        </div>
+      </div>
+    </article>
+  )
+}
+
+function CalculatorDemo() {
+  const [display, setDisplay] = useState('0')
+  const [storedValue, setStoredValue] = useState(null)
+  const [operator, setOperator] = useState(null)
+  const [replaceDisplay, setReplaceDisplay] = useState(false)
+
+  function enterDigit(digit) {
+    setDisplay((current) => {
+      if (replaceDisplay || current === '0' || current === 'Error') return digit
+      return current.length < 14 ? `${current}${digit}` : current
+    })
+    setReplaceDisplay(false)
+  }
+
+  function chooseOperator(nextOperator) {
+    setStoredValue(Number(display))
+    setOperator(nextOperator)
+    setReplaceDisplay(true)
+  }
+
+  function calculate() {
+    if (storedValue === null || !operator) return
+    const secondValue = Number(display)
+    const result = operator === '+' ? storedValue + secondValue
+      : operator === '−' ? storedValue - secondValue
+        : operator === '×' ? storedValue * secondValue
+          : secondValue === 0 ? NaN : storedValue / secondValue
+    setDisplay(Number.isFinite(result) ? String(Number(result.toPrecision(10))) : 'Error')
+    setStoredValue(null)
+    setOperator(null)
+    setReplaceDisplay(true)
+  }
+
+  function clearCalculator() {
+    setDisplay('0')
+    setStoredValue(null)
+    setOperator(null)
+    setReplaceDisplay(false)
+  }
+
+  const buttons = [
+    { label: 'AC', action: clearCalculator, kind: 'utility' },
+    { label: '7', action: () => enterDigit('7') },
+    { label: '8', action: () => enterDigit('8') },
+    { label: '9', action: () => enterDigit('9') },
+    { label: '÷', action: () => chooseOperator('÷'), kind: 'operator' },
+    { label: '4', action: () => enterDigit('4') },
+    { label: '5', action: () => enterDigit('5') },
+    { label: '6', action: () => enterDigit('6') },
+    { label: '×', action: () => chooseOperator('×'), kind: 'operator' },
+    { label: '1', action: () => enterDigit('1') },
+    { label: '2', action: () => enterDigit('2') },
+    { label: '3', action: () => enterDigit('3') },
+    { label: '−', action: () => chooseOperator('−'), kind: 'operator' },
+    { label: '0', action: () => enterDigit('0'), kind: 'zero' },
+    { label: '.', action: () => {
+      setDisplay((current) => replaceDisplay || current === 'Error' ? '0.' : current.includes('.') ? current : `${current}.`)
+      setReplaceDisplay(false)
+    } },
+    { label: '=', action: calculate, kind: 'equals' },
+    { label: '+', action: () => chooseOperator('+'), kind: 'operator' },
+  ]
+
+  return (
+    <article className="demo-card calculator-demo" id="calculator">
+      <div className="demo-heading">
+        <div>
+          <p className="demo-eyebrow">PROJECT 07 · EVERYDAY TOOL</p>
+          <h3>Just the right numbers.</h3>
+          <p>Quick, clear arithmetic with the essentials.</p>
+        </div>
+        <span className="calculator-mark" aria-hidden="true">÷</span>
+      </div>
+      <div className="calculator-widget" aria-label="Calculator">
+        <output className="calculator-display" aria-live="polite">{display}</output>
+        <div className="calculator-keys">
+          {buttons.map(({ label, action, kind }) => (
+            <button className={`calculator-key${kind ? ` ${kind}` : ''}`} key={label} type="button" onClick={action} aria-label={label === 'AC' ? 'Clear calculator' : label}>
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+    </article>
+  )
+}
+
+function ProfileCardDemo() {
+  return (
+    <article className="demo-card design-demo" id="profile-card">
+      <div className="demo-heading">
+        <div>
+          <p className="demo-eyebrow">PROJECT 08 · PROFILE DESIGN</p>
+          <h3>A card that says hello.</h3>
+          <p>A compact identity card with direct ways to connect.</p>
+        </div>
+      </div>
+      <div className="profile-preview">
+        <div className="profile-preview-banner" />
+        <img src={`https://github.com/${githubUsername}.png?size=160`} alt="" />
+        <p className="profile-preview-role">FRONT-END DEVELOPER</p>
+        <h4>{fullName}</h4>
+        <p className="profile-preview-copy">Building thoughtful, responsive experiences for the web.</p>
+        <a href={`https://github.com/${githubUsername}`} target="_blank" rel="noreferrer">Visit my GitHub <ArrowIcon diagonal /></a>
+      </div>
+    </article>
+  )
+}
+
+function FacebookCloneDemo() {
+  return (
+    <article className="demo-card design-demo" id="facebook-clone">
+      <div className="demo-heading">
+        <div>
+          <p className="demo-eyebrow">PROJECT 09 · SOCIAL UI STUDY</p>
+          <h3>Familiar, reimagined.</h3>
+          <p>A responsive login-page layout recreated as a visual exercise.</p>
+        </div>
+      </div>
+      <div className="social-preview" aria-label="Static Facebook login design preview">
+        <div className="social-brand">f</div>
+        <div className="social-login-card">
+          <h4>Log in to Facebook</h4>
+          <input aria-label="Email preview" placeholder="Email address or mobile number" disabled />
+          <input aria-label="Password preview" placeholder="Password" disabled />
+          <button type="button" disabled>Log in</button>
+          <span>Forgotten password?</span>
+          <div />
+          <strong>Create new account</strong>
+        </div>
+        <p className="social-preview-note">Static design preview · no credentials are collected</p>
+      </div>
+    </article>
+  )
+}
+
+function PriceTagDemo() {
+  const plans = [
+    { name: 'Mini', detail: 'Auto care', price: '$15', features: ['Repairs', 'Motor works', 'Auto tech'] },
+    { name: 'Pro', detail: 'Performance & modification', price: '$30', features: ['Tuning', 'Performance works', 'Race works'], popular: true },
+    { name: 'Team', detail: 'Luxury & high-end', price: '$100', features: ['Auto studio', 'Motor prestige', 'Priority support'] },
+  ]
+
+  return (
+    <article className="demo-card design-demo" id="price-tag">
+      <div className="demo-heading">
+        <div>
+          <p className="demo-eyebrow">PROJECT 10 · PRICING DESIGN</p>
+          <h3>Find your level.</h3>
+          <p>A responsive set of plans for an automotive service concept.</p>
+        </div>
+      </div>
+      <div className="pricing-preview">
+        {plans.map((plan) => (
+          <div className={`pricing-preview-plan${plan.popular ? ' popular' : ''}`} key={plan.name}>
+            {plan.popular && <span className="pricing-preview-badge">POPULAR</span>}
+            <span className="pricing-preview-name">{plan.name}</span>
+            <span className="pricing-preview-detail">{plan.detail}</span>
+            <strong>{plan.price}<small> / month</small></strong>
+            <ul>{plan.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+    </article>
+  )
+}
+
+function ProductDesignDemo() {
+  const products = [
+    { name: 'Studio headphones', type: 'AUDIO · WIRELESS', price: '$89', art: 'headphones' },
+    { name: 'Everyday carry bag', type: 'ACCESSORIES · CANVAS', price: '$64', art: 'bag' },
+    { name: 'Sculpted table lamp', type: 'HOME · LIGHTING', price: '$112', art: 'lamp' },
+  ]
+
+  return (
+    <article className="demo-card design-demo" id="product-designs">
+      <div className="demo-heading">
+        <div>
+          <p className="demo-eyebrow">PROJECT 11 · PRODUCT UI</p>
+          <h3>Little things, well considered.</h3>
+          <p>A product-card study focused on imagery, detail, and price.</p>
+        </div>
+      </div>
+      <div className="product-preview-grid">
+        {products.map((product) => (
+          <article className="product-preview-card" key={product.name}>
+            <div className={`product-preview-art ${product.art}`} aria-hidden="true"><span /></div>
+            <p>{product.type}</p>
+            <h4>{product.name}</h4>
+            <strong>{product.price}</strong>
+          </article>
+        ))}
+      </div>
+    </article>
+  )
+}
+
+function GitHubRepositories() {
+  const [repositories, setRepositories] = useState([])
+  const [status, setStatus] = useState('loading')
+  const [error, setError] = useState('')
+  const [search, setSearch] = useState('')
+  const [reloadKey, setReloadKey] = useState(0)
+
+  useEffect(() => {
+    const controller = new AbortController()
+
+    async function loadRepositories() {
+      try {
+        const allRepositories = []
+        let page = 1
+        let hasMore = true
+
+        while (hasMore) {
+          const response = await fetch(
+            `https://api.github.com/users/${githubUsername}/repos?type=owner&per_page=100&sort=updated&page=${page}`,
+            {
+              headers: {
+                Accept: 'application/vnd.github+json',
+                'X-GitHub-Api-Version': '2022-11-28',
+              },
+              signal: controller.signal,
+            },
+          )
+
+          if (!response.ok) {
+            throw new Error(`GitHub returned HTTP ${response.status}.`)
+          }
+
+          const pageRepositories = await response.json()
+          if (!Array.isArray(pageRepositories)) {
+            throw new Error('GitHub returned an unexpected repository list.')
+          }
+
+          allRepositories.push(...pageRepositories.filter((repository) =>
+            repository
+            && !repository.fork
+            && typeof repository.id === 'number'
+            && typeof repository.name === 'string'
+            && typeof repository.html_url === 'string',
+          ))
+          hasMore = pageRepositories.length === 100
+          page += 1
+        }
+
+        setRepositories(allRepositories)
+        setStatus('success')
+      } catch (loadError) {
+        if (controller.signal.aborted) return
+        setError(loadError instanceof Error ? loadError.message : 'An unknown error occurred.')
+        setStatus('error')
+      }
+    }
+
+    loadRepositories()
+    return () => controller.abort()
+  }, [reloadKey])
+
+  const visibleRepositories = repositories.filter((repository) =>
+    `${repository.name} ${repository.description ?? ''} ${repository.language ?? ''}`
+      .toLowerCase()
+      .includes(search.trim().toLowerCase()),
+  )
+
+  return (
+    <section className="github-work" id="all-work" aria-labelledby="all-work-title">
+      <div className="github-work-heading">
+        <div>
+          <p className="work-overline">ALL PUBLIC GITHUB REPOSITORIES</p>
+          <h3 id="all-work-title">Everything I&apos;ve been building.</h3>
+          <p>Browse every public, non-fork repository on my GitHub profile.</p>
+        </div>
+        <a className="all-work-link" href={`https://github.com/${githubUsername}?tab=repositories`} target="_blank" rel="noreferrer">
+          Open GitHub <ArrowIcon diagonal />
+        </a>
+      </div>
+
+      {status === 'loading' && <p className="repository-message" role="status">Loading public GitHub projects…</p>}
+      {status === 'error' && (
+        <div className="repository-error" role="alert">
+          <p>Couldn&apos;t load your GitHub projects. {error}</p>
+          <button type="button" onClick={() => {
+            setError('')
+            setStatus('loading')
+            setReloadKey((key) => key + 1)
+          }}>Try again</button>
+        </div>
+      )}
+      {status === 'success' && (
+        <>
+          <div className="repository-toolbar">
+            <label htmlFor="repository-search">Search all {repositories.length} repositories</label>
+            <input id="repository-search" type="search" placeholder="Search by name, language, or description" value={search} onChange={(event) => setSearch(event.target.value)} />
+            <span>{visibleRepositories.length} shown</span>
+          </div>
+          {visibleRepositories.length ? (
+            <div className="github-repository-grid">
+              {visibleRepositories.map((repository) => {
+                const hasLiveSite = typeof repository.homepage === 'string'
+                  && /^https?:\/\//i.test(repository.homepage)
+                return (
+                  <article className="github-repository-card" key={repository.id}>
+                    <div className="github-repository-top">
+                      <span className="github-repository-icon" aria-hidden="true">⌘</span>
+                      <a href={repository.html_url} target="_blank" rel="noreferrer" aria-label={`Open ${repository.name} source repository`}>
+                        <ArrowIcon diagonal />
+                      </a>
+                    </div>
+                    <h4>{repository.name}</h4>
+                    <p>{repository.description || 'No description provided yet.'}</p>
+                    <div className="github-repository-meta">
+                      <span>{repository.language || 'Code & experiments'}</span>
+                      {hasLiveSite && <a href={repository.homepage} target="_blank" rel="noreferrer">Live site ↗</a>}
+                    </div>
+                  </article>
+                )
+              })}
+            </div>
+          ) : (
+            <p className="repository-message">No repositories match “{search}”. Try another search.</p>
+          )}
+        </>
+      )}
+    </section>
   )
 }
 
@@ -293,7 +739,7 @@ function Work() {
       <div className="section-label"><span>03</span> SELECTED WORK</div>
       <div className="work-heading">
         <div>
-          <p className="work-overline">FIVE PROJECTS · BUILT AND DEPLOYED</p>
+          <p className="work-overline">ELEVEN PROJECTS · FIVE DEPLOYMENTS · SIX DEMOS</p>
           <h2>A few things I&apos;ve <span>made.</span></h2>
         </div>
         <a className="all-work-link" href={`https://github.com/${githubUsername}?tab=repositories`} target="_blank" rel="noreferrer">
@@ -303,8 +749,17 @@ function Work() {
       <div className="repo-grid">
         {featuredProjects.map((project, index) => <ProjectCard key={project.name} project={project} index={index} />)}
       </div>
+      <div className="demo-grid">
+        <ContactListDemo />
+        <CalculatorDemo />
+        <ProfileCardDemo />
+        <FacebookCloneDemo />
+        <PriceTagDemo />
+        <ProductDesignDemo />
+      </div>
+      <GitHubRepositories />
       <div className="work-foot">
-        <span>FIVE LIVE BUILDS <i>✳</i> MORE ON GITHUB</span>
+        <span>FIVE LIVE BUILDS · SIX INTERACTIVE DESIGN DEMOS <i>✳</i> MORE ON GITHUB</span>
         <a href={`https://github.com/${githubUsername}?tab=repositories`} target="_blank" rel="noreferrer">VIEW ALL REPOSITORIES ↗</a>
       </div>
     </section>
