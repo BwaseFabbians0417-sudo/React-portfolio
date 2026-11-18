@@ -53,17 +53,15 @@ const featuredProjects = [
     name: 'Calculator',
     category: 'INTERACTIVE TOOL',
     description: 'A clean, responsive calculator for everyday arithmetic.',
-    url: '#calculator',
+    url: 'https://calculator-rosy-six-11.vercel.app',
     technology: 'REACT · JAVASCRIPT',
-    demo: true,
   },
   {
     name: 'Profile Card',
     category: 'PROFILE DESIGN',
     description: 'A polished personal profile card with clear contact links.',
-    url: '#profile-card',
+    url: 'https://profile-card-mauve-iota.vercel.app',
     technology: 'HTML · CSS',
-    demo: true,
   },
   {
     name: 'Facebook Login Clone',
@@ -77,17 +75,22 @@ const featuredProjects = [
     name: 'Price Tag',
     category: 'PRICING DESIGN',
     description: 'A tiered pricing layout for an automotive service concept.',
-    url: '#price-tag',
+    url: 'https://facebook-login-clone-gotd.vercel.app',
     technology: 'HTML · CSS',
-    demo: true,
   },
   {
     name: 'Product Designs',
     category: 'PRODUCT UI',
     description: 'A small set of product cards exploring color, layout, and hierarchy.',
-    url: '#product-designs',
+    url: 'https://price-tag-flax.vercel.app',
     technology: 'HTML · CSS',
-    demo: true,
+  },
+  {
+    name: 'Note Pad',
+    category: 'PRODUCTIVITY',
+    description: 'A React notepad for capturing and organizing notes.',
+    url: 'https://note-pad-test-run.vercel.app',
+    technology: 'REACT · JAVASCRIPT',
   },
 ]
 
@@ -171,7 +174,7 @@ function Hero() {
           <div className="profile-handle">@{githubUsername}</div>
           <div className="profile-divider" />
           <div className="profile-stats">
-            <div><strong>11</strong><span>FEATURED BUILDS</span></div>
+            <div><strong>12</strong><span>FEATURED BUILDS</span></div>
             <div><strong>∞</strong><span>IDEAS TO BUILD</span></div>
           </div>
           <a className="profile-link" href={`https://github.com/${githubUsername}`} target="_blank" rel="noreferrer">
@@ -180,7 +183,7 @@ function Hero() {
         </div>
         <div className="art-note"><span>✦</span> made with curiosity</div>
       </div>
-      <div className="hero-index"><span>01</span> — 11</div>
+      <div className="hero-index"><span>01</span> — 12</div>
     </section>
   )
 }
@@ -206,7 +209,7 @@ function About() {
         <h2>Curious by nature.<br /><span>Developer by choice.</span></h2>
         <div className="about-copy">
           <p>
-            I&apos;m {fullName}, a front-end developer learning by building. I enjoy turning ideas into responsive, easy-to-use websites with HTML, CSS, JavaScript, and React. My coding journey includes five deployed projects and freeCodeCamp&apos;s Responsive Web Design certification, and I&apos;m growing with every project.
+            I&apos;m {fullName}, a front-end developer learning by building. I enjoy turning ideas into responsive, easy-to-use websites with HTML, CSS, JavaScript, and React. My coding journey includes a growing collection of deployed projects and freeCodeCamp&apos;s Responsive Web Design certification, and I&apos;m growing with every project.
           </p>
           <div className="about-links">
             <a className="inline-link" href="#resume">View my resume <ArrowIcon diagonal /></a>
@@ -739,7 +742,7 @@ function Work() {
       <div className="section-label"><span>03</span> SELECTED WORK</div>
       <div className="work-heading">
         <div>
-          <p className="work-overline">ELEVEN PROJECTS · FIVE DEPLOYMENTS · SIX DEMOS</p>
+          <p className="work-overline">TWELVE PROJECTS · TEN LIVE LINKS · SIX ON-PAGE SHOWCASES</p>
           <h2>A few things I&apos;ve <span>made.</span></h2>
         </div>
         <a className="all-work-link" href={`https://github.com/${githubUsername}?tab=repositories`} target="_blank" rel="noreferrer">
@@ -759,7 +762,7 @@ function Work() {
       </div>
       <GitHubRepositories />
       <div className="work-foot">
-        <span>FIVE LIVE BUILDS · SIX INTERACTIVE DESIGN DEMOS <i>✳</i> MORE ON GITHUB</span>
+        <span>TEN LIVE PROJECT LINKS · SIX ON-PAGE SHOWCASES <i>✳</i> MORE ON GITHUB</span>
         <a href={`https://github.com/${githubUsername}?tab=repositories`} target="_blank" rel="noreferrer">VIEW ALL REPOSITORIES ↗</a>
       </div>
     </section>
