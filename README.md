@@ -4,7 +4,7 @@ A responsive React portfolio featuring ten live project links and seven interact
 
 The Work section also loads the complete list of public, non-fork repositories from the configured GitHub profile, with search, source links, and available live-site links.
 
-The portfolio also includes a short developer bio, a print/save-as-PDF resume section, and a freeCodeCamp Responsive Web Design certificate display with a verification link.
+The portfolio also includes a short developer bio, a print/save-as-PDF resume section, a freeCodeCamp Responsive Web Design certificate display with a verification link, and an accessible FAQ section.
 
 ## Run locally
 

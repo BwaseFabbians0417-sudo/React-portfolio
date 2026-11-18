@@ -157,6 +157,7 @@ function Header() {
       <nav className="main-nav" aria-label="Main navigation">
         <a href="#work">Work</a>
         <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
         <a href="#resume">Resume</a>
         <a href="#certificate">Certificate</a>
         <a href={`https://github.com/${githubUsername}`} target="_blank" rel="noreferrer">GitHub <ArrowIcon diagonal /></a>
@@ -332,6 +333,67 @@ function Certificate() {
             alt={`freeCodeCamp Responsive Web Design Developer Certification awarded to ${fullName} on September 30, 2026`}
           />
         </a>
+      </div>
+    </section>
+  )
+}
+
+function FAQ() {
+  const questions = [
+    {
+      question: 'What kind of work do you do?',
+      answer: 'I build responsive, user-friendly front-end websites and web applications. You can explore examples in the Work section.',
+    },
+    {
+      question: 'Which technologies do you use?',
+      answer: 'My current toolkit includes HTML, CSS, JavaScript, React, and GitHub.',
+    },
+    {
+      question: 'Where can I see all of your projects?',
+      answer: 'The Work section includes selected projects and a searchable list of my public GitHub repositories.',
+      link: { text: 'Browse all projects', href: '#all-work' },
+    },
+    {
+      question: 'Are you open to opportunities?',
+      answer: 'Yes. I’m open to opportunities and collaborations. Reach out through my GitHub profile.',
+      link: { text: 'Connect on GitHub', href: `https://github.com/${githubUsername}`, external: true },
+    },
+    {
+      question: 'Can I view your resume and certificate?',
+      answer: 'Yes. The resume section can be printed or saved as a PDF, and the certificate section links to its verification page.',
+      link: { text: 'View resume', href: '#resume' },
+    },
+    {
+      question: 'How can I get in touch?',
+      answer: 'Visit my GitHub profile to find my projects and connect with me.',
+      link: { text: 'Visit GitHub', href: `https://github.com/${githubUsername}`, external: true },
+    },
+  ]
+
+  return (
+    <section className="faq section-wrap" id="faq" aria-labelledby="faq-title">
+      <div className="section-label"><span>05</span> FREQUENTLY ASKED QUESTIONS</div>
+      <div className="faq-heading">
+        <p className="work-overline">A FEW HELPFUL DETAILS</p>
+        <h2 id="faq-title">Questions, <span>answered.</span></h2>
+      </div>
+      <div className="faq-list">
+        {questions.map(({ question, answer, link }, index) => (
+          <details className="faq-item" key={question} open={index === 0}>
+            <summary>
+              <span>{question}</span>
+              <span className="faq-toggle" aria-hidden="true">+</span>
+            </summary>
+            <div className="faq-answer">
+              <p>{answer}</p>
+              {link && (
+                <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noreferrer' : undefined}>
+                  {link.text}<ArrowIcon diagonal />
+                </a>
+              )}
+            </div>
+          </details>
+        ))}
       </div>
     </section>
   )
@@ -838,6 +900,7 @@ function Footer() {
       <div className="footer-links">
         <a href={`https://github.com/${githubUsername}`} target="_blank" rel="noreferrer">GITHUB <ArrowIcon diagonal /></a>
         <a href={`https://github.com/${githubUsername}`} target="_blank" rel="noreferrer">CONNECT <ArrowIcon diagonal /></a>
+        <a href="#faq">FAQ</a>
       </div>
       <span className="copyright">© {new Date().getFullYear()} OLORUNNIYI</span>
     </footer>
@@ -855,6 +918,7 @@ function App() {
         <Resume />
         <Work />
         <Certificate />
+        <FAQ />
         <Contact />
       </main>
       <Footer />

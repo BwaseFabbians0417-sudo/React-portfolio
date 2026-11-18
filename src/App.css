@@ -2855,3 +2855,128 @@
     flex-direction: column;
   }
 }
+
+.faq {
+  padding-block: 0 94px;
+  scroll-margin-top: 100px;
+}
+
+.faq-heading {
+  margin: 34px 0 0;
+}
+
+.faq-heading h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(38px, 4.5vw, 54px);
+  font-weight: 500;
+  letter-spacing: -.065em;
+  line-height: 1.14;
+}
+
+.faq-heading h2 span {
+  color: var(--accent);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.faq-list {
+  max-width: 850px;
+  margin: 29px auto 0;
+  border-top: 1px solid var(--border);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-item summary {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary:focus-visible {
+  outline: 3px solid var(--accent-strong);
+  outline-offset: 3px;
+}
+
+.faq-toggle {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--accent);
+  font-size: 17px;
+  transition: transform .18s ease, background .18s ease;
+}
+
+.faq-item[open] .faq-toggle {
+  transform: rotate(45deg);
+  background: rgb(97 222 239 / 10%);
+}
+
+.faq-answer {
+  max-width: 650px;
+  padding: 0 50px 20px 0;
+}
+
+.faq-answer p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.faq-answer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 10px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.faq-answer a svg {
+  width: 14px;
+  height: 14px;
+}
+
+@media (max-width: 680px) {
+  .faq {
+    padding-bottom: 70px;
+  }
+
+  .faq-heading {
+    margin-top: 27px;
+  }
+
+  .faq-heading h2 {
+    font-size: 42px;
+  }
+
+  .faq-item summary {
+    min-height: 62px;
+    font-size: 12px;
+  }
+
+  .faq-answer {
+    padding-right: 0;
+  }
+}
