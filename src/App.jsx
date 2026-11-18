@@ -51,6 +51,15 @@ const featuredProjects = [
     showcaseId: 'contact-list',
   },
   {
+    name: 'Counter',
+    category: 'JAVASCRIPT TOOL',
+    description: 'A simple counter with increment, decrement, and reset controls.',
+    url: '#counter',
+    technology: 'REACT · JAVASCRIPT',
+    demo: true,
+    showcaseId: 'counter',
+  },
+  {
     name: 'Calculator',
     category: 'INTERACTIVE TOOL',
     description: 'A clean, responsive calculator for everyday arithmetic.',
@@ -509,6 +518,32 @@ function CalculatorDemo() {
   )
 }
 
+function CounterDemo() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <article className="demo-card design-demo" id="counter">
+      <div className="demo-heading">
+        <div>
+          <p className="demo-eyebrow">PROJECT {projectNumber('Counter')} · JAVASCRIPT TOOL</p>
+          <h3>One step at a time.</h3>
+          <p>Increment, decrement, or reset the count. It stays at zero or above.</p>
+        </div>
+      </div>
+      <div className="counter-widget">
+        <span className="counter-label">CURRENT COUNT</span>
+        <output className="counter-value" aria-live="polite">{count}</output>
+        <div className="counter-controls">
+          <button type="button" aria-label="Decrease count" disabled={count === 0} onClick={() => setCount((currentCount) => Math.max(0, currentCount - 1))}>−</button>
+          <button className="counter-reset" type="button" onClick={() => setCount(0)}>Reset</button>
+          <button type="button" aria-label="Increase count" onClick={() => setCount((currentCount) => currentCount + 1)}>+</button>
+        </div>
+        <a href={`https://github.com/${githubUsername}/javascript-works/blob/main/DOM/counter.html`} target="_blank" rel="noreferrer">View counter source <ArrowIcon diagonal /></a>
+      </div>
+    </article>
+  )
+}
+
 function ProfileCardDemo() {
   return (
     <article className="demo-card design-demo" id="profile-card">
@@ -767,6 +802,7 @@ function Work() {
       </div>
       <div className="demo-grid">
         <ContactListDemo />
+        <CounterDemo />
         <CalculatorDemo />
         <ProfileCardDemo />
         <FacebookCloneDemo />
